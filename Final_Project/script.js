@@ -8,9 +8,10 @@ function setup() {
     let grassCountElement = document.getElementById('grassCount');
     let grassLiveCountElement = document.getElementById('grassLiveCount');
     let grassEaterCountElement = document.getElementById('grassEaterCount');
-    let huntCountElement = document.getElementById('huntCount');
-    let terminatorCountElement = document.getElementById('termCount');
-    let titanCountElement = document.getElementById('titanCount');
+    let grassEaterLiveCountElement = document.getElementById('grassEaterLiveCount');
+    let predatorCountElement = document.getElementById('predatorCount');
+    let amenakerCountElement = document.getElementById('amenakerCount');
+    let doktorCountElement = document.getElementById('doktorCount');
     //! adding socket listener on "data" <-- name, after that fire 'drawCreatures' function 
 
     socket.on("data", drawCreatures);
@@ -34,10 +35,11 @@ function setup() {
         weatherElement.innerText = data.weather;
         grassCountElement.innerText = data.grassCounter;
         grassLiveCountElement.innerText = data.grassLiveCounter;
-        grassEaterCountElement.innerText = data.eatCounter;
-        huntCountElement.innerText = data.huntCounter;
-        terminatorCountElement.innerText = data.termCounter;
-        titanCountElement.innerText = data.titanCounter;
+        grassEaterCountElement.innerText = data.grassEaterCounter;
+        grassEaterLiveCountElement.innerText = data.grassEaterLiveCounter;
+        predatorCountElement.innerText = data.predatorCounter;
+        amenakerCountElement.innerText = data.amenakerCounter;
+        doktorCountElement.innerText = data.doktorCounter;
         //! Every time it creates new Canvas with new matrix size
         createCanvas(matrix[0].length * side, matrix.length * side)
         //! clearing background by setting it to new grey color

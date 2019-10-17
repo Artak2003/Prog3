@@ -4,7 +4,7 @@ var GrassEater = require("./modules/GrassEater.js");
 var Predator = require("./modules/Amenaker.js");
 var Amenaker = require("./modules/Predator.js");
 var Doktor = require("./modules/Doktor.js");
-let random = require('./modules/random');
+let random = require('./modules/random.js');
 //! Requiring modules  --  END
 
 //! Initializing global arrays  --  START
@@ -18,7 +18,7 @@ matrix = [];
 
 // statistics start
 grassHashiv = 0;
-eatHashiv = 0;
+grassEaterHashiv = 0;
 predatorHashiv = 0;
 amenakerHashiv = 0;
 doktorHashiv = 0;
@@ -27,7 +27,7 @@ doktorHashiv = 0;
 // time = 0
 //! Creating MATRIX -- START
 
-function matrixGenerator(matrixSize, grass, eat, predator, amenaker, doktor) {
+function matrixGenerator(matrixSize, grass, grassEater, predator, amenaker, doktor) {
     for (let i = 0; i < matrixSize; i++) {
         matrix[i] = [];
         for (let o = 0; o < matrixSize; o++) {
@@ -39,7 +39,7 @@ function matrixGenerator(matrixSize, grass, eat, predator, amenaker, doktor) {
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 1;
     }
-    for (let i = 0; i < eat; i++) {
+    for (let i = 0; i < grassEater; i++) {
         let customX = Math.floor(random(matrixSize));
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 2;
@@ -81,7 +81,7 @@ function creatingObjects() {
             if (matrix[y][x] == 2) {
                 var grassEater = new GrassEater(x, y);
                 grassEaterArr.push(grassEater);
-                eatHashiv++;
+                grassEaterHashiv++;
             } else if (matrix[y][x] == 1) {
                 var grass = new Grass(x, y);
                 grassArr.push(grass);
@@ -154,7 +154,8 @@ function game() {
         matrix: matrix,
         grassCounter: grassHashiv,
         grassLiveCounter: grassArr.length,
-        eatCounter: eatHashiv,
+        grassEaterCounter: grassEaterHashiv,
+        grassEaterLiveCounter: grassEaterArr.length,
         predatorCounter: predatorHashiv,
         amenakerCounter: amenakerHashiv,
         doktorCounter: doktorHashiv,
