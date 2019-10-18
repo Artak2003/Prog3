@@ -60,7 +60,7 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, amenaker, dokt
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(20, 25, 20, 15, 10, 2);
+matrixGenerator(20, 15, 20, 15, 10, 2);
 //! Creating MATRIX -- END
 
 //! SERVER STUFF  --  START
@@ -114,10 +114,14 @@ let weather = "winter"
 function game() {
 
     exanak++;
-    if (exanak <= 10){
+    if (exanak <= 5){
         weather = "summer"
-    }else if (exanak <= 20){
+    }else if (exanak <= 10){
         weather = "autumn"
+    }else if (exanak <= 15){
+        weather = "winter"
+    }else if (exanak <= 20){
+        weather = "spring"
     }else if (exanak > 20){
         exanak = 0
     }
@@ -157,8 +161,11 @@ function game() {
         grassEaterCounter: grassEaterHashiv,
         grassEaterLiveCounter: grassEaterArr.length,
         predatorCounter: predatorHashiv,
+        predatorLiveCounter: predatorArr.length,
         amenakerCounter: amenakerHashiv,
+        amenakerLiveCounter: amenakerArr.length,
         doktorCounter: doktorHashiv,
+        doktorLiveCounter: doktorArr.length,
         weather: weather
     }
 

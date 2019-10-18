@@ -10,8 +10,11 @@ function setup() {
     let grassEaterCountElement = document.getElementById('grassEaterCount');
     let grassEaterLiveCountElement = document.getElementById('grassEaterLiveCount');
     let predatorCountElement = document.getElementById('predatorCount');
+    let predatorLiveCountElement = document.getElementById('predatorLiveCount');
     let amenakerCountElement = document.getElementById('amenakerCount');
+    let amenakerLiveCountElement = document.getElementById('amenakerLiveCount');
     let doktorCountElement = document.getElementById('doktorCount');
+    let doktorLiveCountElement = document.getElementById('doktorLiveCount');
     //! adding socket listener on "data" <-- name, after that fire 'drawCreatures' function 
 
     socket.on("data", drawCreatures);
@@ -38,8 +41,11 @@ function setup() {
         grassEaterCountElement.innerText = data.grassEaterCounter;
         grassEaterLiveCountElement.innerText = data.grassEaterLiveCounter;
         predatorCountElement.innerText = data.predatorCounter;
+        predatorLiveCountElement.innerText = data.predatorLiveCounter;
         amenakerCountElement.innerText = data.amenakerCounter;
+        amenakerLiveCountElement.innerText = data.amenakerLiveCounter;
         doktorCountElement.innerText = data.doktorCounter;
+        doktorLiveCountElement.innerText = data.doktorLiveCounter;
         //! Every time it creates new Canvas with new matrix size
         createCanvas(matrix[0].length * side, matrix.length * side)
         //! clearing background by setting it to new grey color
@@ -54,6 +60,10 @@ function setup() {
                         fill("green");
                     }else if (data.weather == "autumn"){
                         fill("orange");
+                    }else if (data.weather == "winter"){
+                        fill("white");
+                    }else if (data.weather == "spring"){
+                        fill("#87e8dd");
                     }
                     rect(j * side, i * side, side, side);
                 } else if (matrix[i][j] == 2) {
