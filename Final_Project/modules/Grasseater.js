@@ -88,7 +88,7 @@ module.exports = class GrassEater extends LiveForm {
     die() {
         matrix[this.y][this.x] = 0;
 
-        for (let i in eatArr) {
+        for (let i in grassEaterArr) {
             if (grassEaterArr[i].x == this.x && grassEaterArr[i].y == this.y) {
                 grassEaterArr.splice(i, 1)
             }

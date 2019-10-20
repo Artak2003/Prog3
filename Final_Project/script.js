@@ -22,16 +22,7 @@ function setup() {
     function drawCreatures(data) {
 
 
-        // let sendData = {
-        //     matrix: matrix,
-        //     grassCounter: grassHashiv,
-        //     grassLiveCounter: grassArr.length,
-        //     eatCounter: eatHashiv,
-        //     huntCounter: huntHashiv,
-        //     termCounter: termHashiv,
-        //     titanCounter: titanHashiv,
-        //     weather: weather
-        // }
+        
 
         //! after getting data pass it to matrix variable
         matrix = data.matrix;

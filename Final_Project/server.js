@@ -4,6 +4,7 @@ var GrassEater = require("./modules/GrassEater.js");
 var Predator = require("./modules/Amenaker.js");
 var Amenaker = require("./modules/Predator.js");
 var Doktor = require("./modules/Doktor.js");
+var Bomba = require("./modules/Bomba.js");
 let random = require('./modules/random.js');
 //! Requiring modules  --  END
 
@@ -13,6 +14,7 @@ grassEaterArr = [];
 predatorArr = [];
 amenakerArr = [];
 doktorArr = [];
+bombaArr = [];
 matrix = [];
 //! Initializing global arrays  --  END
 
@@ -27,7 +29,7 @@ doktorHashiv = 0;
 // time = 0
 //! Creating MATRIX -- START
 
-function matrixGenerator(matrixSize, grass, grassEater, predator, amenaker, doktor) {
+function matrixGenerator(matrixSize, grass, grassEater, predator, amenaker, doktor, bomba) {
     for (let i = 0; i < matrixSize; i++) {
         matrix[i] = [];
         for (let o = 0; o < matrixSize; o++) {
@@ -59,8 +61,15 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, amenaker, dokt
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 5;
     }
+    for (let i = 0; i < bomba; i++) {
+        let customY = Math.floor(random(matrixSize));
+        for (let X = 0; X < matrixSize.length; X++) {
+        matrix[customY][X] = 6;
+        }
+    }
+    
 }
-matrixGenerator(20, 15, 20, 15, 10, 2);
+matrixGenerator(20, 15, 20, 15, 10, 2, 1);
 //! Creating MATRIX -- END
 
 //! SERVER STUFF  --  START
@@ -101,6 +110,10 @@ function creatingObjects() {
                 var doktor = new Doktor(x, y);
                 doktorArr.push(doktor);
                 doktorHashiv++
+            }
+            else if (matrix[y][x] == 6) {
+                var bomba = new Bomba();
+                bombaArr.push(bomba);
             }
         }
     }
@@ -152,7 +165,11 @@ function game() {
             doktorArr[i].eat();
         }
     }
-
+    if (bombaArr[0] !== undefined) {
+        for (var i in bombaArr) {
+            bombaArr[i].traqoc();
+        }
+    }
     //! Object to send
     let sendData = {
         matrix: matrix,
