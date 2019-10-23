@@ -6,7 +6,7 @@ var random = require("./random.js");
 module.exports = class Doktor extends LiveForm {
     constructor(x, y) {
         super(x, y);
-        this.puls = 200;
+        this.puls = 0;
     }
     getNewCoordinates() {
         this.directions = [
@@ -56,7 +56,7 @@ module.exports = class Doktor extends LiveForm {
             doktorArr.push(doktor);
 
 
-            this.puls = 200;
+            this.puls = 1;
         }
     }
     eat() {
@@ -88,7 +88,7 @@ module.exports = class Doktor extends LiveForm {
         }
     }
     move() {
-        this.puls--;
+        this.puls-5;
 
         let emptyCells1 = this.chooseCell(0)
         let emptyCells2 = this.chooseCell(1)
@@ -122,7 +122,7 @@ module.exports = class Doktor extends LiveForm {
             this.y = y;
             this.x = x;
         }
-        if (this.puls < 0) {
+        if (this.puls <= 0) {
             this.die();
         }
     }

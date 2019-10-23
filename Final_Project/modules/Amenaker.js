@@ -110,7 +110,7 @@ module.exports = class Amenaker extends LiveForm {
             this.y = y;
             this.x = x;
         }
-        if (this.hzor < 0) {
+        if (this.hzor <= 0) {
             this.die();
         }
     }

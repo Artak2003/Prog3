@@ -4,7 +4,7 @@ var GrassEater = require("./modules/GrassEater.js");
 var Predator = require("./modules/Amenaker.js");
 var Amenaker = require("./modules/Predator.js");
 var Doktor = require("./modules/Doktor.js");
-var Bomba = require("./modules/Bomba.js");
+var Vaxkot = require("./modules/Vaxkot.js");
 let random = require('./modules/random.js');
 //! Requiring modules  --  END
 
@@ -14,7 +14,7 @@ grassEaterArr = [];
 predatorArr = [];
 amenakerArr = [];
 doktorArr = [];
-bombaArr = [];
+vaxkotArr = [];
 matrix = [];
 //! Initializing global arrays  --  END
 
@@ -24,12 +24,13 @@ grassEaterHashiv = 0;
 predatorHashiv = 0;
 amenakerHashiv = 0;
 doktorHashiv = 0;
+vaxkotHashiv = 0;
 // statistics end
 
 // time = 0
 //! Creating MATRIX -- START
 
-function matrixGenerator(matrixSize, grass, grassEater, predator, amenaker, doktor, bomba) {
+function matrixGenerator(matrixSize, grass, grassEater, predator, amenaker, doktor, vaxkot) {
     for (let i = 0; i < matrixSize; i++) {
         matrix[i] = [];
         for (let o = 0; o < matrixSize; o++) {
@@ -61,15 +62,13 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, amenaker, dokt
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 5;
     }
-    for (let i = 0; i < bomba; i++) {
+    for (let i = 0; i < vaxkot; i++) {
+        let customX = Math.floor(random(matrixSize));
         let customY = Math.floor(random(matrixSize));
-        for (let X = 0; X < matrixSize.length; X++) {
-        matrix[customY][X] = 6;
-        }
+        matrix[customY][customX] = 6;
     }
-    
 }
-matrixGenerator(20, 15, 20, 15, 10, 2, 1);
+matrixGenerator(20, 15, 50, 15, 10, 2, 30);
 //! Creating MATRIX -- END
 
 //! SERVER STUFF  --  START
@@ -112,8 +111,9 @@ function creatingObjects() {
                 doktorHashiv++
             }
             else if (matrix[y][x] == 6) {
-                var bomba = new Bomba();
-                bombaArr.push(bomba);
+                var vaxkot = new Vaxkot(x, y);
+                vaxkotArr.push(vaxkot);
+                vaxkotHashiv++
             }
         }
     }
@@ -165,9 +165,9 @@ function game() {
             doktorArr[i].eat();
         }
     }
-    if (bombaArr[0] !== undefined) {
-        for (var i in bombaArr) {
-            bombaArr[i].traqoc();
+    if (vaxkotArr[0] !== undefined) {
+        for (var i in vaxkotArr) {
+            vaxkotArr[i].move();
         }
     }
     //! Object to send
@@ -183,6 +183,8 @@ function game() {
         amenakerLiveCounter: amenakerArr.length,
         doktorCounter: doktorHashiv,
         doktorLiveCounter: doktorArr.length,
+        vaxkotCounter: vaxkotHashiv,
+        vaxkotLiveCounter: vaxkotArr.length,
         weather: weather
     }
 
